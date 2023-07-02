@@ -1,7 +1,7 @@
 import requests
 import urllib3
 import json
-import utils
+import rosreestr_api.utils as utils
 import models
 urllib3.disable_warnings()
 
@@ -32,7 +32,6 @@ def get_cad_nums(x,y):
 
     return cad_nums
 
-
 def get_places(x, y):
     cad_nums = get_cad_nums(x,y)
     
@@ -59,6 +58,3 @@ def get_places(x, y):
         places.append(place)
 
     return places
-
-
-places = get_places(55.771527, 37.596928)
