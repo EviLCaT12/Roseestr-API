@@ -44,15 +44,21 @@ def get_places(x, y):
         if r.json()['feature'] == None:
             continue
 
-        place_dict = r.json()['feature']['attrs']
+        place_dict = r.json()['feature']
         place = models.Place(
-            address=place_dict['address'],
-            cad_cost=place_dict['cad_cost'],
-            util_by_doc=place_dict['util_by_doc'],
-            cc_date_entering=place_dict['cc_date_entering'],
-            date_cost=place_dict['date_cost'],
-            application_date=place_dict['application_date'],
-            area_value=place_dict['area_value'],
+            address=place_dict['attrs']['address'],
+            cad_cost=place_dict['attrs']['cad_cost'],
+            util_by_doc=place_dict['attrs']['util_by_doc'],
+            cc_date_entering=place_dict['attrs']['cc_date_entering'],
+            date_cost=place_dict['attrs']['date_cost'],
+            application_date=place_dict['attrs']['application_date'],
+            area_value=place_dict['attrs']['area_value'],
+            y_max=place_dict['extent']['ymax'],
+            x_max=place_dict['extent']['xmax'],
+            x_min=place_dict['extent']['xmin'],
+            y_min=place_dict['extent']['ymin'],
+            y_center=place_dict['center']['y'],
+            x_center=place_dict['center']['x'],
         )
 
         places.append(place)
